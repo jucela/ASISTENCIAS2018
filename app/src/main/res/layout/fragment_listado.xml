@@ -47,6 +47,7 @@
                     android:layout_weight="4.5"
                     android:layout_width="0dp"
                     android:textColor="@color/icons"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:text="NOMBRES Y APELLIDOS"
                     />

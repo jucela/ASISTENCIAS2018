@@ -111,9 +111,8 @@ public class ListadoFragment extends Fragment {
                         if(registrado.getSubido1()==0 && registrado.getSubido2()==0) {
                             registrado.setSubido1(1);
                             String coleccion = "ASISTENCIA_CAPACITACION_ECE2018";
-
                             WriteBatch batch = db.batch();
-                            DocumentReference documentReference = db.collection(coleccion).document("NIVEL_I_IIA").collection("ASISTENTES").document(registrado.get_id());
+                            DocumentReference documentReference = db.collection(coleccion).document(registrado.get_id());
                             batch.update(documentReference,"fecha_registro1", new Timestamp(new Date(registrado.getAnio1(),registrado.getMes1(),registrado.getDia1(),registrado.getHora1(),registrado.getMinuto1())));
                             batch.update(documentReference,"estatus1",registrado.getEstatus1());
                             batch.update(documentReference,"hora_transferencia_entrada", FieldValue.serverTimestamp());
@@ -157,19 +156,18 @@ public class ListadoFragment extends Fragment {
                             registrado.setSubido2(1);
                             String coleccion = "ASISTENCIA_CAPACITACION_ECE2018";
                             WriteBatch batch = db.batch();
-                            DocumentReference documentReference = db.collection(coleccion).document("NIVEL_I_IIA").collection("ASISTENTES").document(registrado.get_id());
+                            DocumentReference documentReference = db.collection(coleccion).document(registrado.get_id());
                             batch.update(documentReference,"fecha_registro2", new Timestamp(new Date(registrado.getAnio2(),registrado.getMes2(),registrado.getDia2(),registrado.getHora2(),registrado.getMinuto2())));
                             batch.update(documentReference,"estatus2",registrado.getEstatus2());
                             batch.update(documentReference,"hora_transferencia_salida", FieldValue.serverTimestamp());
                             final String c = registrado.getNumdoc();
-
                             batch.commit().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d("FIRESTORE", "DocumentSnapshot successfully written!");
                                     if (!b) {
                                         //
-                                        Toast.makeText(context, agregados.size() + "  Registros de Entrada en la Nube", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, agregados2.size() + "  Registros de Entrada en la Nube", Toast.LENGTH_SHORT).show();
                                         b = true;
                                     }
                                     try {
